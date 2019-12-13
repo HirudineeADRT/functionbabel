@@ -1,0 +1,163 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "2dde8d58-3849-41f6-ac82-ac8415f85d47": {
+        "id": "2dde8d58-3849-41f6-ac82-ac8415f85d47",
+        "parent": null,
+        "name": "function-compiled-with-babel",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "a80d09a6-14d4-4b8e-9bb9-f078eae63c54",
+          "8e21ef88-01d7-4161-bce1-a758c43a63fc",
+          "a4d22ca0-aae4-4f4e-8b8a-1ec42ff0664d"
+        ],
+        "isRemovable": false,
+        "filePath": "function-compiled-with-babel"
+      },
+      "a80d09a6-14d4-4b8e-9bb9-f078eae63c54": {
+        "id": "a80d09a6-14d4-4b8e-9bb9-f078eae63c54",
+        "parent": "2dde8d58-3849-41f6-ac82-ac8415f85d47",
+        "name": "handler.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "function-compiled-with-babel/handler.js",
+        "code": "const createResponse = require('./createResponse');\n\nmodule.exports.hello = (event, context, callback) => {\n  const response = createResponse({ body: { message: 'Success!' } });\n  console.log({ response });\n  callback(null, response);\n};\n",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "hello",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "triggers": []
+      },
+      "1c6c9ceb-07e7-469e-afb5-235e97bc7758": {
+        "id": "1c6c9ceb-07e7-469e-afb5-235e97bc7758",
+        "parent": null,
+        "name": "serverless.yml",
+        "type": "YAML_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "serverless.yml",
+        "code": "service: function-compiled-with-babel\n\nframeworkVersion: \">=1.1.0 <2.0.0\"\n\ncustom:\n  babelPresets:\n    - latest\n\nplugins:\n  - serverless-babel-plugin\n\nprovider:\n  name: aws\n  runtime: nodejs8.10\n\nfunctions:\n  hello:\n    handler: handler.hello\n"
+      },
+      "ae3a743b-cee2-42fb-8992-46b93bd4991c": {
+        "id": "ae3a743b-cee2-42fb-8992-46b93bd4991c",
+        "parent": null,
+        "name": ".gitignore",
+        "type": "TEXT_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": ".gitignore",
+        "code": "node_modules\n.serverless\n"
+      },
+      "4604f7f0-04fc-4dcd-819b-ecb35c63ebb0": {
+        "id": "4604f7f0-04fc-4dcd-819b-ecb35c63ebb0",
+        "parent": null,
+        "name": "README.md",
+        "type": "MARKDOWN_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "README.md",
+        "code": "<!--\ntitle: 'AWS Function compiled with Babel example in NodeJS'\ndescription: 'This example demonstrates how to compile your JavaScript code with Babel. In order to do so the ''serverless-babel-plugin'' is leveraged.'\nlayout: Doc\nframework: v1\nplatform: AWS\nlanguage: nodeJS\nauthorLink: 'https://github.com/rupakg'\nauthorName: 'Rupak Ganguly'\nauthorAvatar: 'https://avatars0.githubusercontent.com/u/8188?v=4&s=140'\n-->\n# Function compiled with Babel\n\nThis example demonstrates how to compile your JavaScript code with Babel. In order to do so the `serverless-babel-plugin` is leveraged.\n\n## Use Cases\n\n- Using the latest JavaScript language features without waiting for AWS to provide new Node environments.\n\n## Setup\n\n```bash\nnpm install\n```\n\n## Deploy\n\n```bash\nserverless deploy\n```\n\n```bash\nServerless: Deprecation Notice: Starting with the next update, we will drop support for Lambda to implicitly create LogGroups. Please remove your log groups and set \"provider.cfLogs: true\", for CloudFormation to explicitly create them for you.\nServerless: Packaging serviceâ¦\nServerless: Babel compilation:\ntmpBabelDirectory/createResponse.js -> tmpBabelDirectory/createResponse.js\ntmpBabelDirectory/handler.js -> tmpBabelDirectory/handler.js\n\nServerless: Packaging service with compiled files...\nServerless: Uploading CloudFormation file to S3â¦\nServerless: Uploading service .zip file to S3â¦\nServerless: Updating Stackâ¦\nServerless: Checking Stack update progressâ¦\n............\nServerless: Stack update finishedâ¦\n\nService Information\nservice: function-compiled-with-babel\nstage: dev\nregion: us-east-1\napi keys:\n  None\nendpoints:\n  None\nfunctions:\n  function-compiled-with-babel-dev-hello: arn:aws:lambda:us-east-1:377024778620:function:function-compiled-with-babel-dev-hello\n```\n\n## Usage\n\nYou can now invoke the Lambda directly and even see the resulting log via\n\n```bash\nserverless invoke --function hello --log\n```\n\nThe expected result should be similar to:\n\n```bash\n{\n    \"statusCode\": 200,\n    \"body\": {\n        \"message\": \"Success!\"\n    }\n}\n--------------------------------------------------------------------\nSTART RequestId: 4388eeaffe-11e6-9e1bde31ed2e43 Version: $LATEST\n2021 16:22:07.748 (+01:00)\t4388eeaffe-11e6-9e1bde31ed2e43\t{ response: { statusCode: 200, body: { message: 'Success!' } } }\nEND RequestId: 4388eeaffe-11e6-9e1bde31ed2e43\nREPORT RequestId: 4388eeaffe-11e6-9e1bde31ed2e43\tDuration: 23.13 ms\tBilled Duration: 100 ms \tMemory Size: 1024 MB\tMax Memory Used: 17 MB\n```\n"
+      },
+      "8e21ef88-01d7-4161-bce1-a758c43a63fc": {
+        "id": "8e21ef88-01d7-4161-bce1-a758c43a63fc",
+        "parent": "2dde8d58-3849-41f6-ac82-ac8415f85d47",
+        "name": "createResponse.js",
+        "type": "JS_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "function-compiled-with-babel/createResponse.js",
+        "code": "module.exports = ({ body = {}, statusCode = 200 }) => {\n  const response = {\n    statusCode,\n    body,\n  };\n  return response;\n};\n"
+      },
+      "b1512c67-ffe1-4eee-9af4-b26aeecd7b86": {
+        "id": "b1512c67-ffe1-4eee-9af4-b26aeecd7b86",
+        "parent": null,
+        "name": "package.json",
+        "type": "JSON_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "package.json",
+        "code": "{\n  \"name\": \"aws-function-compiled-with-babel\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Demonstrating how to compile all your code with Babel\",\n  \"repository\": \"<replace>\",\n  \"author\": \"\",\n  \"license\": \"MIT\",\n  \"devDependencies\": {\n    \"babel-cli\": \"~6.18.0\",\n    \"babel-preset-latest\": \"^6.16.0\",\n    \"serverless-babel-plugin\": \"^0.1.3\"\n  },\n  \"dependencies\": {}\n}\n"
+      },
+      "a4d22ca0-aae4-4f4e-8b8a-1ec42ff0664d": {
+        "id": "a4d22ca0-aae4-4f4e-8b8a-1ec42ff0664d",
+        "parent": "2dde8d58-3849-41f6-ac82-ac8415f85d47",
+        "name": "event.json",
+        "type": "JSON_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "function-compiled-with-babel/event.json",
+        "code": "{\n  \"key3\": \"value3\",\n  \"key2\": \"value2\",\n  \"key1\": \"value1\"\n}\n"
+      }
+    },
+    "rootNode": "2dde8d58-3849-41f6-ac82-ac8415f85d47",
+    "openFiles": [
+      "a80d09a6-14d4-4b8e-9bb9-f078eae63c54"
+    ],
+    "currentFileId": "a80d09a6-14d4-4b8e-9bb9-f078eae63c54",
+    "resources": {},
+    "customTemplate": {
+      "dialect": "CloudFormation",
+      "definitions": null
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "babel-cli": {
+          "name": "babel-cli",
+          "language": "javascript",
+          "version": "~6.18.0",
+          "dev": true
+        },
+        "babel-preset-latest": {
+          "name": "babel-preset-latest",
+          "language": "javascript",
+          "version": "^6.16.0",
+          "dev": true
+        },
+        "serverless-babel-plugin": {
+          "name": "serverless-babel-plugin",
+          "language": "javascript",
+          "version": "^0.1.3",
+          "dev": true
+        }
+      }
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "aws-function-compiled-with-babel",
+    "projectDescription": "Demonstrating how to compile all your code with Babel",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1576215750008
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "functionbabel",
+      "url": "https://github.com/HirudineeADRT/functionbabel"
+    }
+  }
+}
